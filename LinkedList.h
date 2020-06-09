@@ -75,6 +75,7 @@ void SLL<T>::addNewItem(){
 	
 	Node<T>* temp = new Node<T>();
 	T d = temp->getDataUI();
+	temp->setNodeData(d);
 	
 	Node<T>* counter = head;
 	
@@ -86,7 +87,7 @@ void SLL<T>::addNewItem(){
 		while(counter->getNextNode() != NULL){
 			counter = counter->getNextNode();
 		}
-		counter->getNextNode()->setNextNode(temp);
+		counter->setNextNode(temp);
 	}
 	
 	size++;
