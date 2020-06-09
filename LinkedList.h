@@ -47,19 +47,28 @@ T Node<T>::getDataUI(){
 
 
 
+
+
+
 template<typename T>
 class SLL{
 	public:
 		SLL();
 		void addNewItem();
 		void printLinkedList();
-		
+		void deleteBack();
 		std::string Name;
 		
 	private:
 		Node<T>* head;
 		int size;
 };
+
+
+
+
+
+
 
 template<typename T>
 SLL<T>::SLL(){
@@ -109,5 +118,26 @@ void SLL<T>::printLinkedList(){
 	}
 }
 	
-
+template<typename T>
+void SLL<T>::deleteBack(){
+	if(head == NULL){
+		std::cout << "List Empty!\n";
+	}
+	else if(head->getNextNode() == NULL){
+		head = NULL;
+	}
+	else{
+		Node<T>* prev;
+		Node<T>* temp = head;
+		while(temp->getNextNode() != NULL){
+			prev = temp;
+			std::cout << "Moving from data : " << temp->getNodeData() << std::endl;
+			temp = temp->getNextNode();
+		}
+		std::cout << "Deleting Data : " << temp->getNodeData() << std::endl;
+		temp = NULL;
+		prev->setNextNode(NULL);
+		size--;
+	}
+}
 
