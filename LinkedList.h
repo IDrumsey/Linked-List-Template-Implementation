@@ -145,27 +145,55 @@ void SLL<T>::deleteBack(){
 template<typename T>
 void SLL<T>::deletePosition(){
 	if(head == NULL)std::cout << "Empty List!\n";
-	else if(head->getNextNode() == NULL)head = NULL;
 	else{
-		int pos;
-		Node<T>* temp = head;
-		for(int i = 0; i < size; i++){
+		Node<T>*temp = head;
+		for(int i = 0; temp != NULL; i++){
 			std::cout << i << " : " << temp->getNodeData();
 			if(i != size - 1)std::cout << " , ";
 			temp = temp->getNextNode();
 		}
 		std::cout << std::endl;
-		std::cout << "Position : ";
-		std::cin >> pos;
 		
 		temp = head;
-		for(int i = 0; i < pos - 1; i++){
-			temp = temp->getNextNode();
+		int pos;
+		std::cout << "Position to Delete : ";
+		std::cin >> pos;
+		if(pos > 0 && pos <= size){
+			std::cout << "Deleting position " << pos << std::endl;
+			Node<T>* temp2;
+			for(int i = 0; i < pos; i++){
+				temp2 = temp;
+				temp = temp->getNextNode();
+			}
+			if(temp->getNextNode() != NULL){
+				temp2->setNextNode(temp->getNextNode());
+				delete temp;
+			}
+			else{
+				delete temp;
+				temp2->setNextNode(NULL);
+				
+			}
+			size--;
 		}
-		Node<T>* temp2 = temp->getNextNode();
-		if(temp2->getNextNode() != NULL)temp->setNextNode(temp2->getNextNode());
-		
-		delete temp2;
+		else if(pos == 0){
+			Node<T>* temp = head;
+			if(head->getNextNode() != NULL){
+				head = head->getNextNode();
+				delete temp;
+			}
+			else{
+				delete temp;
+				head = NULL;
+			}
+			size--;
+		}
+		else{
+			std::cout << "Invalid Position... Would you like to try again? : ";
+			std::string ans;
+			std::cin >> ans;
+			if(ans == "Y" || ans == "y" || ans == "Yes" || ans == "yes")this->deletePosition();
+		}
 	}
-	size--;
+	std::cout << "New Size : " << size << std::endl;
 }
