@@ -11,7 +11,8 @@ int main(){
 		cout << "1. Add New Item\n";
 		cout << "2. Delete Back\n";
 		cout << "3. Delete Position\n";
-		cout << "4. Print LL\n";
+		cout << "4. Delete Front\n";
+		cout << "5. Print LL\n";
 		cin >> choice;
 		
 		switch(choice){
@@ -28,6 +29,10 @@ int main(){
 				break;
 			}
 			case 4:{
+				L1.deleteFront();
+				break;
+			}
+			case 5:{
 				L1.printLinkedList();
 				break;
 			}

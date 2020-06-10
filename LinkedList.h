@@ -59,6 +59,7 @@ class SLL{
 		void deleteBack();
 		std::string Name;
 		void deletePosition();
+		void deleteFront();
 		
 	private:
 		Node<T>* head;
@@ -196,4 +197,19 @@ void SLL<T>::deletePosition(){
 		}
 	}
 	std::cout << "New Size : " << size << std::endl;
+}
+
+template <typename T>
+void SLL<T>::deleteFront(){
+	if(head == NULL)std::cout << "Empty List!" << std::endl;
+	else if(head->getNextNode() == NULL){
+		delete head;
+		head = NULL;
+	}
+	else{
+		Node<T>*temp = head;
+		head = head->getNextNode();
+		delete temp;
+		size--;
+	}
 }
