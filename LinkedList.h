@@ -58,6 +58,7 @@ class SLL{
 		void printLinkedList();
 		void deleteBack();
 		std::string Name;
+		void deletePosition();
 		
 	private:
 		Node<T>* head;
@@ -141,3 +142,30 @@ void SLL<T>::deleteBack(){
 	}
 }
 
+template<typename T>
+void SLL<T>::deletePosition(){
+	if(head == NULL)std::cout << "Empty List!\n";
+	else if(head->getNextNode() == NULL)head = NULL;
+	else{
+		int pos;
+		Node<T>* temp = head;
+		for(int i = 0; i < size; i++){
+			std::cout << i << " : " << temp->getNodeData();
+			if(i != size - 1)std::cout << " , ";
+			temp = temp->getNextNode();
+		}
+		std::cout << std::endl;
+		std::cout << "Position : ";
+		std::cin >> pos;
+		
+		temp = head;
+		for(int i = 0; i < pos - 1; i++){
+			temp = temp->getNextNode();
+		}
+		Node<T>* temp2 = temp->getNextNode();
+		if(temp2->getNextNode() != NULL)temp->setNextNode(temp2->getNextNode());
+		
+		delete temp2;
+	}
+	size--;
+}
