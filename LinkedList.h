@@ -60,6 +60,9 @@ class SLL{
 		std::string Name;
 		void deletePosition();
 		void deleteFront();
+		void search();
+		int getSize();
+		Node<T>* getHead();
 		
 	private:
 		Node<T>* head;
@@ -212,4 +215,31 @@ void SLL<T>::deleteFront(){
 		delete temp;
 		size--;
 	}
+}
+
+template<typename T> 
+void SLL<T>::search(){
+	T data;
+	std::cout << "Data to search for : ";
+	std::cin.ignore();
+	std::getline(std::cin, data);
+	int count = 0;
+	Node<T>* temp = head;
+	for(int i = 0; i < size; i++){
+		if(temp->getNodeData() == data){
+			std::cout << "Position " << i << " : " << data << std::endl;
+			count++;
+		}
+		temp = temp->getNextNode();
+	}
+}
+
+template<typename T>
+Node<T>* SLL<T>::getHead(){
+	return this->head;
+}
+
+template<typename T>
+int SLL<T>::getSize(){
+	return this->size;
 }
